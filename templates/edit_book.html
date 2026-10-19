@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Редагування книги{% endblock %}
+
+{% block content %}
+<section class="library-panel">
+    <div class="edit-form">
+        <h2>Редагувати книгу</h2>
+        <form method="post" action="{{ url_for('edit_book', book_id=book.id) }}">
+            <label for="title">Назва</label>
+            <input type="text" id="title" name="title" value="{{ book.title }}" required>
+
+            <label for="author">Автор</label>
+            <input type="text" id="author" name="author" value="{{ book.author }}" required>
+
+            <label for="year">Рік видання</label>
+            <input type="number" id="year" name="year" value="{{ book.year }}" min="0" required>
+
+            <label for="borrower">Хто бере</label>
+            <input type="text" id="borrower" name="borrower" value="{{ book.borrower or '' }}" placeholder="Залиште порожнім, якщо книга вільна">
+
+            <div class="button-row">
+                <button class="primary-btn" type="submit">Зберегти зміни</button>
+                <a class="link-button secondary-btn" href="{{ url_for('library') }}">Назад</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

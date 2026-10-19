@@ -1,0 +1,239 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #f5f1e8, #e7dcc6);
+    color: #1c1c1c;
+}
+
+.main-header {
+    background: #2d3a2f;
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid #a67c52;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-img {
+    height: 80px;
+    width: 120px;
+    display: block;
+}
+
+.main-nav {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.main-nav a {
+    color: #f4f1ea;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.main-nav a:hover {
+    color: #d8b77a;
+}
+
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
+}
+
+.hero-banner {
+    background: linear-gradient(135deg, #2d6a4f, #a67c52);
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    margin-bottom: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-banner h1 {
+    color: white;
+    font-size: 42px;
+    text-align: center;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.welcome-section,
+.about-section,
+.library-panel {
+    background: rgba(255, 255, 255, 0.78);
+    border-radius: 18px;
+    padding: 25px 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    margin-bottom: 25px;
+}
+
+.welcome-section h2,
+.about-section h1,
+.about-section h2,
+.library-panel h2 {
+    color: #2d3a2f;
+}
+
+.home-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.info-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.library-layout {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 25px;
+}
+
+.library-form,
+.book-card,
+.edit-form {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+}
+
+.library-form {
+    padding: 20px;
+}
+
+.library-form h3,
+.edit-form h2 {
+    margin-top: 0;
+    color: #2d3a2f;
+}
+
+.library-form form,
+.edit-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.library-form label,
+.edit-form label {
+    font-weight: bold;
+    color: #2d3a2f;
+}
+
+.library-form input,
+.edit-form input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d3c4a6;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.button-row,
+.book-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+button,
+.link-button {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.primary-btn {
+    background: #2d6a4f;
+    color: white;
+}
+
+.secondary-btn {
+    background: #d7b26d;
+    color: #1c1c1c;
+}
+
+.danger-btn {
+    background: #b64c4c;
+    color: white;
+}
+
+.book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.book-card {
+    padding: 18px;
+    border-left: 8px solid #a67c52;
+}
+
+.book-card h3 {
+    margin-top: 0;
+    color: #1d2d1d;
+}
+
+.status-tag {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.status-available {
+    background: #dff5e5;
+    color: #1f6f42;
+}
+
+.status-borrowed {
+    background: #fde8d7;
+    color: #a65c1d;
+}
+
+@media (max-width: 800px) {
+    .library-layout,
+    .home-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .main-header {
+        flex-direction: column;
+        gap: 16px;
+        padding: 18px 20px;
+    }
+
+    .main-nav {
+        justify-content: center;
+    }
+
+    .hero-banner h1 {
+        font-size: 30px;
+        padding: 0 20px;
+    }
+}

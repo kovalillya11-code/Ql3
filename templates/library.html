@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Бібліотека{% endblock %}
+
+{% block content %}
+<section class="library-panel">
+    <h2>Книжковий каталог</h2>
+    <div class="library-layout">
+        <div class="library-form">
+            <h3>Додати нову книгу</h3>
+            <form method="post" action="{{ url_for('add_book') }}">
+                <label for="title">Назва книги</label>
+                <input type="text" id="title" name="title" required>
+
+                <label for="author">Автор</label>
+                <input type="text" id="author" name="author" required>
+
+                <label for="year">Рік видання</label>
+                <input type="number" id="year" name="year" min="0" required>
+
+                <label for="borrower">Хто бере</label>
+                <input type="text" id="borrower" name="borrower" placeholder="Якщо книга вільна — залиште порожньо">
+
+                <div class="button-row">
+                    <button class="primary-btn" type="submit">Зберегти книгу</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="book-list">
+            {% for book in books %}
+            <div class="book-card">
+                <div class="status-tag {% if book.available %}status-available{% else %}status-borrowed{% endif %}">
+                    {% if book.available %}В наявності{% else %}Видана{% endif %}
+                </div>
+                <h3>{{ book.title }}</h3>
+                <p><strong>Автор:</strong> {{ book.author }}</p>
+                <p><strong>Рік:</strong> {{ book.year }}</p>
+                <p><strong>Читач:</strong> {{ book.borrower or 'вільна' }}</p>
+
+                <div class="book-actions">
+                    <form method="post" action="{{ url_for('lend_book', book_id=book.id) }}">
+                        <input type="text" name="borrower" value="{{ book.borrower or '' }}" placeholder="Ім'я читача" required>
+                        <button class="secondary-btn" type="submit">{% if book.available %}Видати{% else %}Оновити{% endif %}</button>
+                    </form>
+
+                    <a class="link-button secondary-btn" href="{{ url_for('edit_book', book_id=book.id) }}">Редагувати</a>
+
+                    <form method="post" action="{{ url_for('delete_book', book_id=book.id) }}">
+                        <button class="danger-btn" type="submit">Видалити</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

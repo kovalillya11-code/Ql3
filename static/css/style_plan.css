@@ -1,0 +1,90 @@
+/* Плавна поява сторінки при завантаженні */
+@keyframes fadeInPage {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Поява нових карток */
+@keyframes slideInCard {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+body { 
+  font-family: Arial, sans-serif; 
+  background: #f4efe6; 
+  margin: 0; 
+  padding: 20px; 
+  color: #2b2b2b;
+  animation: fadeInPage 0.4s ease-out forwards;
+}
+
+.container { max-width: 700px; margin: 0 auto; }
+h1 { color: #2d4a3e; }
+
+.card { 
+  background: #fff; 
+  border-left: 6px solid #cc9256; 
+  border-radius: 12px;
+  padding: 16px; 
+  margin-bottom: 14px; 
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  animation: slideInCard 0.35s ease-out forwards;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,.12);
+}
+
+.card.done { 
+  opacity: .5; 
+  border-left-color: #6e7572;
+}
+.card.done .title { text-decoration: line-through; }
+.title { font-size: 1.2em; font-weight: bold; }
+.meta { color: #666; font-size: .9em; margin: 6px 0; }
+
+form.add { 
+  background: #fff; 
+  padding: 16px; 
+  border-radius: 12px; 
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08); 
+}
+
+input, button { 
+  padding: 8px; 
+  margin: 4px 0; 
+  border-radius: 6px; 
+  border: 1px solid #c9b48a; 
+  transition: all 0.2s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #2d4a3e;
+  box-shadow: 0 0 0 3px rgba(45, 74, 62, 0.15);
+}
+
+button { 
+  background: #d4b06a; 
+  cursor: pointer; 
+  border: none; 
+  padding: 8px 14px; 
+  font-weight: bold;
+}
+button:hover {
+  background: #c29d59;
+  transform: translateY(-1px);
+}
+button:active {
+  transform: translateY(1px);
+}
+
+button.del { background: #b84a4a; color: #fff; }
+button.del:hover { background: #a13939; }
+
+.row { display: flex; gap: 8px; }
+@media (max-width: 500px) { .row { flex-direction: column; } }

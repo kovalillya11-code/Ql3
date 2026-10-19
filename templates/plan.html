@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Планувальник</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/style_plan.css') }}">
+<style>
+  a.edit-btn { display: inline-block; background: #4a76a8; color: #fff; padding: 8px 14px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 13.333px; transition: background 0.2s; }
+  a.edit-btn:hover { background: #3b5e85; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Планувальник</h1>
+
+  <form class="add" method="post" action="{{ url_for('add_task') }}">
+    <input name="title" placeholder="Назва завдання" required>
+    <div class="row">
+      <input type="date" name="date" required>
+      <input name="description" placeholder="Опис">
+    </div>
+    <button type="submit">Додати</button>
+  </form>
+
+  {% for t in tasks %}
+  <div class="card {% if t.done %}done{% endif %}">
+    <div class="title">{{ t.title }}</div>
+    <div class="meta">📅 {{ t.date }} · {{ t.description }}</div>
+    <div class="row">
+      <form method="post" action="{{ url_for('toggle_task', task_id=t.id) }}">
+        <button type="submit">{% if t.done %}Повернути{% else %}Виконано{% endif %}</button>
+      </form>
+      
+      <a href="{{ url_for('edit_task', task_id=t.id) }}" class="edit-btn">Редагувати</a>
+
+      <form method="post" action="{{ url_for('delete_task', task_id=t.id) }}">
+        <button type="submit" class="del">Видалити</button>
+      </form>
+    </div>
+  </div>
+  {% else %}
+  <p>Завдань немає.</p>
+  {% endfor %}
+</div>
+</body>
+</html>

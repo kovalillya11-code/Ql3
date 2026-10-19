@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Редагувати завдання</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/style_plan.css') }}">
+<style>
+  form.edit-form { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.08); max-width: 700px; margin: 20px auto; }
+  input, button { padding: 8px; margin: 8px 0; border-radius: 6px; border: 1px solid #c9b48a; width: 100%; box-sizing: border-box; }
+  button { background: #4a76a8; color: white; cursor: pointer; border: none; font-weight: bold; }
+  button:hover { background: #3b5e85; }
+  .cancel-link { display: block; text-align: center; margin-top: 10px; color: #666; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Редагувати завдання</h1>
+  <form class="edit-form" method="post" action="{{ url_for('edit_task', task_id=task.id) }}">
+    <label>Назва завдання:</label>
+    <input name="title" value="{{ task.title }}" required>
+    <label>Дата виконання:</label>
+    <input type="date" name="date" value="{{ task.date }}" required>
+    <label>Опис завдання:</label>
+    <input name="description" value="{{ task.description }}">
+    <button type="submit">Зберегти зміни</button>
+    <a href="{{ url_for('index') }}" class="cancel-link">Скасувати</a>
+  </form>
+</div>
+</body>
+</html>
